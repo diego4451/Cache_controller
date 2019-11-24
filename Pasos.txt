@@ -1,1 +1,14 @@
+1) Memoria cache -> 1024 sets x 4 lineas x 64 bits (8 palabras)
 
+2) Separar la direccion del procesador por interes:
+	10 bits para el set
+	3 bits para la palabra
+
+3) Comparar los tags con el remainder
+	3.1) Con un MUX se elige uno de los 1024 sets del tag array se toman las
+	4 lineas y se comparar individualmente con el remainder, si alguna es 
+	igual se produce un hit, de lo contrario un miss
+	3.2) A la vez con otro MUX se elige el set del data array, se espera a la
+	señal del hit/miss y con otro mux se elige la linea correcta entre 4
+
+4) Luego del hit/miss se realiza una AND de la comparacion (punto 3) con el valid Bit
